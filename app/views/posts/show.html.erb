@@ -1,48 +1,63 @@
-<h1>posts#show</h1>
-<div class="post">
-    <p><%= @post.title %></p>
-    <p>
-        <% if @post.image.present? %>
-            <%= image_tag @post.image_url, size: '250x200'%>
-        <% else %>
-            <%= image_tag "nonono.png", size: '250x200' %>
-        <% end %>
-    </p>
-    <% if user_signed_in? %>
-        <% if current_user.already_liked?(@post) %>
-            <%= link_to post_like_path(id: @post.id, post_id: @post.id), method: :delete do %>
-                <i class="fas fa-heart"></i><%= @post.likes.count %>
-            <% end %>
-        <% else %>
-            <%= link_to post_likes_path(id: @post.id, post_id: @post.id), method: :post do %>
-                <i class="far fa-heart"></i><%= @post.likes.count %>
-            <% end %>
-        <% end %>
-    <% else %>
-        <i class="far fa-heart"></i><%= @post.likes.count %>
-    <% end %>
-    <p><%= @post.contents %></p>
-</div>
-    <div class="comment-wrapper">
-    <p>コメント一覧</p>
-        <% @comments.each do |c| %>
-            <div>
-            <%= c.user.email unless c.user.blank? %>
-            <br>
-            <%= c.content %>
-            </div>
-            <br>
-        <% end %>
-        <% if user_signed_in? %>
-            <%= form_with(model: [@post, @comment], local: true) do |f| %>
-                <%= f.text_area :content %>
-                <%= button_tag type: "submit" do %>
-                    <i class="far fa-comments"></i> コメントする
-                <% end %>
-            <% end %>
-        <% end %>
-        
+<h2>新規RECIPE投稿</h2>
+  <div class="field">
+  <p class="title"></p>
+  <%= form_for @post do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, :size => 140 %>
+    <br>
+    <br>
+    <div class="way">
+      <%= f.label :material %>
+      <%= f.text_area :material, size: "40x20",class:"textarea" %>
+      <%= f.label :process %>
+      <%= f.text_area :process, size: "60x20",class:"textarea1"%>
     </div>
-
-<%= link_to "編集する", edit_post_path(@post.id) %>
-<%= link_to "post一覧に戻る", posts_path %>
+    <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+  </div>
+    <br>
+    <br>
+  <%= f.submit "投稿する" %>
+  </div>
+<% end %>
+<style>
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+input[type="text"] {
+  width: 95%;
+  height: 40px;
+  background-color: rgb(253, 250, 226)
+}
+.textarea{
+  background-color:rgb(253, 250, 226);
+}
+.textarea1{
+  background-color:rgb(253, 250, 226);
+}
+input[type="submit"] {
+  width: 200px;
+  font-size: 20px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+.field {
+  margin: 50px auto;
+  width: 80%;
+  border: solid #cb4c3e;
+  border-radius: 30px;
+  text-align: center;
+  background-color: #f9e5c4;
+  margin-bottom: 30px;
+}
+.sub{
+  text-align: center;
+}
+.way{
+  display: flex;
+  padding: 3%
+}
+</style>

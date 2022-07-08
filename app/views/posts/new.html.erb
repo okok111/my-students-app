@@ -1,13 +1,63 @@
-<h1>posts#new</h1>
-<%= form_for @post do |f| %>
-<div class="field">
-    <%= f.label :title %>
-    <p><%= f.text_field :title, :size => 20 %></p>
+<h2>新規RECIPE投稿</h2>
+  <div class="field">
+  <p class="title"></p>
+  <%= form_for @post do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, :size => 140 %>
+    <br>
+    <br>
+    <div class="way">
+      <%= f.label :material %>
+      <%= f.text_area :material, size: "40x20",class:"textarea" %>
+      <%= f.label :process %>
+      <%= f.text_area :process, size: "60x20",class:"textarea1"%>
+    </div>
+    <div class="field">
     <%= f.label :image %>
-    <p><%= f.file_field :image %></p>
-    <%= f.label :contents %>
-    <p><%= f.text_field :contents, :size => 20 %></p>
-</div>
-<%= f.submit "postする" %>
+    <%= f.file_field :image %>
+  </div>
+    <br>
+    <br>
+  <%= f.submit "投稿する" %>
+  </div>
 <% end %>
-<%= link_to "post一覧に戻る", posts_path %>
+<style>
+.title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+input[type="text"] {
+  width: 95%;
+  height: 40px;
+  background-color: rgb(253, 250, 226)
+}
+.textarea{
+  background-color:rgb(253, 250, 226);
+}
+.textarea1{
+  background-color:rgb(253, 250, 226);
+}
+input[type="submit"] {
+  width: 200px;
+  font-size: 20px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+.field {
+  margin: 50px auto;
+  width: 80%;
+  border: solid #cb4c3e;
+  border-radius: 30px;
+  text-align: center;
+  background-color: #f9e5c4;
+  margin-bottom: 30px;
+}
+.sub{
+  text-align: center;
+}
+.way{
+  display: flex;
+  padding: 3%
+}
+</style>

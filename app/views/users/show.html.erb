@@ -1,8 +1,64 @@
-<h1>users#show</h1>
-<p>名前 : <%= @user.name %></p>
+<h1>MYPAGE</h1>
+<div class="mypage">
+<h3><p>名前 : <%= @user.name %></p>
+<p>プロフィール : <%= @user.profile %></p></h3>
 <p>メールアドレス : <%= @user.email %></p>
-<p>プロフィール : <%= @user.profile %></p>
-
 <% if current_user.id == @user.id %>
-    <%= link_to "編集する", edit_user_registration_path %>
+  <%= link_to "編集する", edit_user_registration_path %>
 <% end %>
+</div>
+<hr>
+  <div class="tabs">
+  <input id="all" type="radio" name="tab_item" checked>
+  <label class="tab_item" for="all">私の投稿一覧</label>
+  <input id="programming" type="radio" name="tab_item">
+  <label class="tab_item" for="programming">お気に入り</label>
+  <div class="tab_content" id="all_content">
+    <div class="tab_content_description">
+      <p class="c-txtsp"></p>
+        <div class="itirann">
+        <div class="shunsuke">
+            <% @user.posts.each do |t| %>
+            <div class="posts">
+            <br>
+              <h3><%= t.name %></h3>
+              <%= t.material %>
+              <%= t.process %>
+              <%= image_tag t.image_url, size: "200x150" if t.image? %>
+              <br>
+              <%= link_to "詳細へ", post_path(t.id) %>
+              <br>
+              <% if user_signed_in? && current_user.id == t.user_id %> 
+              <%= link_to "編集する", edit_post_path(t.id) %>
+              <br>
+              <%= button_to "削除する", post_path(t.id), method: :delete %>
+              <% end %>
+            </div>
+            <% end %>
+        </div> 
+    </div>
+    </div>
+  </div>
+  <div class="tab_content" id="programming_content">
+    <div class="tab_content_description">
+      <p class="c-txtsp"></p>
+        <div class="user-likes">
+        <div class="shunsuke">
+        <% @user.liked_posts.each do |t| %>
+        <div class="posts">
+        <br>
+        <br>
+        <h3><%= t.user.name %></h3>
+        <%= t.name %>
+        <%= t.material %>
+        <%= t.process %>
+        <%= image_tag t.image_url, size: "200x150" if t.image? %>
+        </div>
+        <% end %>
+        </div>
+    </div>
+    </div>
+  </div>
+    </div>
+  </div>
+<br>

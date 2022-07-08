@@ -1,8 +1,25 @@
-<h1>posts#edit</h1>
-<%= form_for @post do |f| %>
-    <%= f.label :title %>
-    <p><%= f.text_field :title, :size => 50 %></p>
-    <%= f.label :contents %>
-    <p><%= f.text_field :contents, :size => 50 %></p>
-    <%= f.submit "編集する" %>
+<%= stylesheet_link_tag 'edit', media: 'all' %>
+ <div class="kennsaku">
+  <div class="field">
+  <p class="title"></p>
+  <%= form_for @post do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, :size => 140 %>
+    <br>
+    <br>
+    <%= f.label :material %>
+    <%= f.text_area :material, size: "40x20" %>
+    <%= f.label :process %>
+    <%= f.text_area :process, size: "60x20"%>
+    <br>
+    <br>
+    <%= f.label :image %>
+    <%= f.file_field :image %>
+    <br>
+    <br>
+  <div class="sub">
+  <%= f.submit "詳細へ" %>
+  </div>
+  </div>
+  </div>
 <% end %>

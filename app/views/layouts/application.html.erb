@@ -5,23 +5,28 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/reset.css">
+    <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-4-1/css/5-4-1.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
-  <body>
-    <header>
-      <% if user_signed_in? %>    
-        <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-        <%= link_to "マイページへ", user_path(current_user.id) %>
-      <% else %>
-        <%= link_to 'ログイン', new_user_session_path  %>
+  <header>
+      <h1>RECIPE</h1>
+      <div class="header-list">
+      <ul>
+        <li><%= link_to "LOGIN", posts_path %></li>
+        <li><%= link_to "HOME", posts_path %></li>
+        <li><%= link_to "NEW POST",new_post_path %></li>
+      <% if user_signed_in? %>
+        <li><%= link_to "MYPAGE", user_path(current_user.id) %></li>
       <% end %>
+      </ul>
+      </div>
     </header>
-    <main>
-      <%= yield %>
-    </main>
-    <footer></footer>
+  <body>
+    <%= yield %>
+    <footer>
+     <p>Let Enjoy Cooking</p>
+    </footer>
   </body>
-</html>

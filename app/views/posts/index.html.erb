@@ -1,38 +1,157 @@
-<h1>posts#index</h1>
-<%= link_to "新規投稿へ", new_post_path %>
-<div class="posts-container">
+<div class="aida">
+    <br>
+    <br>
+  </div>
+<div class="all">
+    <div id="search-wrap">
+      <%= form_tag({controller:"posts",action:"index"}, method: :get) do %>
+      <%= text_field_tag :search  %>
+      <% end %>
+      <%= submit_tag '検索する'  %>
+    </div>
+<div class="home">
+  <br>
+  <br>
+  <div class="index">
     <% @posts.each do |t| %>
-        <%= link_to post_path(t.id) do %>
-        <div class="post">
-            <p><a href="/users/<%= t.user.id %>"><%= t.user.name %></a></p>
-            <p><%= t.title %></p>
-            <p>
-                <% if t.image.present? %>
-                    <%= image_tag t.image_url, size: '250x200'%>
-                <% else %>
-                    <%= image_tag "nonono.png", size: '250x200' %>
-                <% end %>
-            </p>
-            <% if user_signed_in? %>
-                <% if current_user.already_liked?(t) %>
-                    <%= link_to post_like_path(id: t.id, post_id: t.id), method: :delete do %>
-                        <i class="fas fa-heart fa-2x"></i><%= t.likes.count %>
-                    <% end %>
-                <% else %>
-                    <%= link_to post_likes_path(id: t.id, post_id: t.id), method: :post do %>
-                        <i class="far fa-heart fa-2x"></i><%= t.likes.count %>
-                    <% end %>
-                <% end %>
-            <% else %>
-                <i class="far fa-heart fa-2x"></i><%= t.likes.count %>
+      <div class="post">
+        <h3><%= t.name %></h3>
+        <%= image_tag t.image_url, size: "180x120" if t.image? %>
+        <%= link_to "詳細へ", post_path(t.id) %>
+        <% if user_signed_in? %>      
+          <% if current_user.already_liked?(t) %>
+            <%= link_to post_like_path(id: t.id, post_id: t.id), method: :delete do %>
+              <i class="fas fa-heart"></i><%= t.likes.count %>
             <% end %>
-            <p><%= t.contents %></p>
-            <%= link_to "詳細へ", post_path(t.id) %>
-            <% if user_signed_in? %>
-                <%= link_to "編集する", edit_post_path(t.id) %>
-                <%= link_to "削除する", post_path(t.id), method: :delete %>
+          <% else %>
+            <%= link_to post_likes_path(id: t.id, post_id: t.id), method: :post do %>
+              <h4> <i class="far fa-heart"></i>><%= t.likes.count %></h4>
             <% end %>
-        </div>
+          <% end %>
+        <% else %>
+            <i class="far fa-heart"></i><%= t.likes.count %>
         <% end %>
+      </div>
     <% end %>
+  </div>
+    <br>
+  <div class="set">
+    <div class="random">
+    <br>
+      <h3>本日のおすすめ</h3>
+        <%= @random.name %>
+      <br>
+    </div>
+    <div class="rank">
+    <br>
+      <h3> 検索数ランキング </h3>
+        <% @rank_posts.each do |t| %>     
+          <br><%= t.name %>
+          <%= t.impressions_count %>
+        <% end %>
+    </div>
+  </div>
 </div>
+</div>
+<div class="logauto">
+  <%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
+</div>
+<style>
+.aida{
+  background-color: rgb(253, 250, 226);
+  padding: 0;
+  margin: 0;
+}
+.random {
+  height:100px;
+  border: solid #fff2e1;
+  border-radius: 10px;
+  text-align: center;
+  background-color: #FFF5EE;
+  margin-bottom:70px;
+  border: solid 3px;
+  border-color:#f99d63da
+}
+.index{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  align-items: center;
+  align-content: stretch;
+  width: 800px;
+  height: 400px;
+  margin: 40px auto;
+}
+.post{
+  margin: 2%;
+  padding: 3%;
+  width: 28%;
+  border-radius: 10px;
+  text-align: center;
+  background-color: #FFF5EE;
+  height: 300px;
+  border: solid 3px;
+  border-color:#f99d63da
+}
+.home{
+  background-color: rgb(253, 250, 226);
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 1000px;
+}
+.set{
+  display:flex;
+  justify-content:center;
+  display:flex;
+  flex-flow:column;
+  margin-right:70px;
+  margin-top:-70px;
+  height:600px;
+}
+.logauto{
+  text-align: center;
+}
+.all{
+  background-color:rgb(253, 250, 226);
+  padding: 0;
+  margin: 0;
+}
+.search-wrap {
+  margin: 50px 0px auto;
+  padding: 3%;
+  width: 60%;
+  border-radius: 10px;
+  border-radius: 50px;
+  border-width: 10px;
+  text-align: center;
+  background-color: rgb(253, 250, 226);
+  border-style: none;
+  color: inherit;
+}
+#search-wrap input[type="text"]{
+  width:60%;
+  display:block;
+  margin:0 auto;
+  border:solid 0.1px;
+  height:30px;
+}
+#search-wrap input[type="submit"]{
+  width:60%;
+  display:block;
+  margin:0 auto;
+  height:50px;
+  font-size:30px;
+} 
+
+.search{
+  margin: 50px 0px auto;
+}
+.rank{
+  background-color:white;
+  height:300px;
+  margin:0 auto;
+  width: 120%;
+  padding:3px;
+  text-align:center;
+}
