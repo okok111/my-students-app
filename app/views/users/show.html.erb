@@ -22,8 +22,8 @@
             <div class="posts">
             <br>
               <h3><%= t.name %></h3>
-              <%=# t.material %>
-              <%= #t.process %>
+              <%#= t.material %>
+              <%#= t.process %>
               <%= image_tag t.image_url, size: "200x150" if t.image? %>
               <br>
               <%= link_to "詳細へ", post_path(t.id) %>
