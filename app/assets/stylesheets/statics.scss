@@ -1,3 +1,39 @@
 // Place all the styles related to the statics controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.top{
+    background-image: url(third-back.jpg);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      background-color: #ffffff;
+  }
+  .first-block {
+      background-image: url(fourth-back.jpg);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      background-color: #ffffff;
+      z-index: 0;
+      height: 90vh;
+    }
+    .first-block {
+      height: 700px;
+      background-color: #ddd;
+      opacity: 0.4;
+    }
+    .second-block {
+      height: 800px;
+      background-color: #f0f0f0;
+      opacity: 0.4;
+    }
+    .third-block {
+      height: 700px;
+      background-color: #e7d0a7;
+      opacity: 0.4;
+    }
+    .search-wrap input[type="text"]{
+      background-color: red;
+    }
