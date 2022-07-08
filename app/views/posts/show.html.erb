@@ -5,11 +5,22 @@
 <h1><p><%= @post.name %></p></h1>
 <div class="material">
 <h4>材料</h4>
-<p><%= @post.material %></p> 
+<p>
+<%if @post.material.nil? %>  
+  <%=@post.material%>
+<% else %>
+  <%=safe_join(@post.material.split("\n"),tag(:br))%>    
+<%end %>
+
+</p> 
 </div>
 <div class="process">
 <h4>作り方</h4>
-<p><%= @post.process %></p>
+<%if @post.process.nil? %>  
+  <%=@post.process%>
+<% else %>
+  <%=safe_join(@post.process.split("\n"),tag(:br))%>    
+<%end %>
 </div>
 <p><%= image_tag @post.image_url, size: "250x200" if @post.image? %>
 </div>
