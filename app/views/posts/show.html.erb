@@ -1,63 +1,62 @@
-<h2>新規RECIPE投稿</h2>
-  <div class="field">
-  <p class="title"></p>
-  <%= form_for @post do |f| %>
-    <%= f.label :name %>
-    <%= f.text_field :name, :size => 140 %>
-    <br>
-    <br>
-    <div class="way">
-      <%= f.label :material %>
-      <%= f.text_area :material, size: "40x20",class:"textarea" %>
-      <%= f.label :process %>
-      <%= f.text_area :process, size: "60x20",class:"textarea1"%>
-    </div>
-    <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image %>
-  </div>
-    <br>
-    <br>
-  <%= f.submit "投稿する" %>
-  </div>
+<%= stylesheet_link_tag 'shows', media: 'all' %>
+<div class="all">
+<h3>PECIPE詳細</h3>
+<div class="post">
+<h1><p><%= @post.name %></p></h1>
+<div class="material">
+<h4>材料</h4>
+<p><%= @post.material %></p> 
+</div>
+<div class="process">
+<h4>作り方</h4>
+<p><%= @post.process %></p>
+</div>
+<p><%= image_tag @post.image_url, size: "250x200" if @post.image? %>
+</div>
+<% if user_signed_in? %>
+    <% if current_user.already_liked?(@post) %>
+          <%= link_to post_like_path(@post), method: :delete do %>
+             <p>いいねを取り消す</p><%= @post.likes.count %>
+          <% end %>
+      <% else %>
+          <%= link_to post_likes_path(@post), method: :post do %>
+             <p>いいね</p><%= @post.likes.count %>
+          <% end %>
+      <% end %>
+  <% else %>
+      <p>いいねの数 = </p><%= @post.likes.count %>
+  <% end %>
+<div class="like">
+<h2>いいねしたユーザー</h2>
+<% @post.liked_users.each do |user| %>
+  <li><%= user.email %></li>
 <% end %>
-<style>
-.title {
-  font-size: 32px;
-  font-weight: bold;
-  margin-bottom: 50px;
-}
-input[type="text"] {
-  width: 95%;
-  height: 40px;
-  background-color: rgb(253, 250, 226)
-}
-.textarea{
-  background-color:rgb(253, 250, 226);
-}
-.textarea1{
-  background-color:rgb(253, 250, 226);
-}
-input[type="submit"] {
-  width: 200px;
-  font-size: 20px;
-  margin-top: 50px;
-  margin-bottom: 30px;
-}
-.field {
-  margin: 50px auto;
-  width: 80%;
-  border: solid #cb4c3e;
-  border-radius: 30px;
-  text-align: center;
-  background-color: #f9e5c4;
-  margin-bottom: 30px;
-}
-.sub{
-  text-align: center;
-}
-.way{
-  display: flex;
-  padding: 3%
-}
-</style>
+</div>
+<div class="comment-wrapper">
+   <h3><p>コメント一覧</p></h3>
+  <% @comments.each do |c| %>
+    <div>
+      <%= c.user.email unless c.user.blank? %>
+      <br>
+      <%= c.content %>
+    </div>
+      <br>
+  <% end %>
+  <% if user_signed_in? %>
+    <%= form_with(model: [@post, @comment], local: true) do |f| %>
+      <%= f.text_area :content %>
+      <%= button_tag type: "submit" do %>
+        <i class="far fa-comments"></i> コメントする
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+<!%= link_to "Tweet一覧に戻る", posts_path %>
+<br>
+<%= link_to "編集する", edit_post_path(@post.id) %>
+<br>
+<br>
+<br>
+<script>
+</script>
+</div>

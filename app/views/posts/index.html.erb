@@ -16,7 +16,7 @@
     <% @posts.each do |t| %>
       <div class="post">
         <h3><%= t.name %></h3>
-        <%= image_tag t.image_url, size: "180x120" if t.image? %>
+        <%= image_tag t.image_url, size: "200x150" if t.image? %>
         <%= link_to "詳細へ", post_path(t.id) %>
         <% if user_signed_in? %>      
           <% if current_user.already_liked?(t) %>
@@ -39,7 +39,7 @@
     <div class="random">
     <br>
       <h3>本日のおすすめ</h3>
-        <%#= @random.name %>
+        <%= @random.name %>
       <br>
     </div>
     <div class="rank">
