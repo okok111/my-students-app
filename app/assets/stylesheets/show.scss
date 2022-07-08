@@ -1,0 +1,104 @@
+.mypage {
+    margin: 50px auto;
+    width: 50%;
+    border: solid #d3def1;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #ffffff;
+}
+  .itirann{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: stretch;
+    align-items: center;
+    align-content: stretch;
+    width: 800px;
+    height: 600px;
+    margin: 40px auto;
+  }
+  .posts{
+  margin: 2%;
+  padding: 0%;
+  width: 28%;
+  border-radius: 10px;
+  text-align: center;
+  background-color: #efe4c3;
+  height: 300px;
+}
+  .shunsuke{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  align-items: center;
+  align-content: stretch;
+  width: 800px;
+  height: 600px;
+  margin: 20px 20px 20px;
+}
+  .user-likes{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: stretch;
+    align-items: center;
+    align-content: stretch;
+    width: 800px;
+    height: 600px;
+    margin: 40px auto;
+  }
+  .container{
+    display: flex;
+    margin: 50px auto;
+    width: 80%
+  }
+  .tabs {
+    margin-top: 50px;
+    padding-bottom: 40px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    width: 1000px;
+    height: 2000px;
+    margin: 0 auto;}
+  /*タブのスタイル*/
+  .tab_item {
+    width: calc(100%/2);
+    height: 50px;
+    border-bottom: 3px solid #f99d63da;;
+    background-color: #ecd7c0;
+    line-height: 50px;
+    font-size: 16px;
+    text-align: center;
+    color: #565656;
+    display: block;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.2s ease;
+  }
+  .tab_item:hover {
+    opacity: 0.75;
+  }
+  /*ラジオボタンを全て消す*/
+  input[name="tab_item"] {
+    display: none;
+  }
+  /*タブ切り替えの中身のスタイル*/
+  .tab_content {
+    display: none;
+    padding: 40px 40px 0;
+    clear: both;
+    overflow: hidden;
+  }
+  /*選択されているタブのコンテンツのみを表示*/
+  #all:checked ~ #all_content,
+  #programming:checked ~ #programming_content,
+  #design:checked ~ #design_content {
+    display: block;
+  }
+  /*選択されているタブのスタイルを変える*/
+  .tabs input:checked + .tab_item {
+    background-color: #f99d63da;;
+    color: #fff;
+  }
+  .body{
+  background-color: #ffffff;
+  }
