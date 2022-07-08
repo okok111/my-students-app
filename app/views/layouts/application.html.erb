@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>App0</title>
+    <title>Myapp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description"  content="書籍「動くWebデザインアイディア帳」のサンプルサイトです">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/reset.css">
-    <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-4-1/css/5-4-1.css">
+<!--==============レイアウトを制御する独自のCSSを読み込み===============-->
+<link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/reset.css">
+<link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/5-4-1/css/5-4-1.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -15,7 +18,11 @@
       <h1>RECIPE</h1>
       <div class="header-list">
       <ul>
-        <li><%= link_to "LOGIN", posts_path %></li>
+      <% if user_signed_in? %>
+        <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete %></li>
+      <% else %>
+        <li><%= link_to "LOGIN", new_user_session_path %></li>
+      <% end %>
         <li><%= link_to "HOME", posts_path %></li>
         <li><%= link_to "NEW POST",new_post_path %></li>
       <% if user_signed_in? %>
@@ -25,8 +32,11 @@
       </div>
     </header>
   <body>
+  <main>
     <%= yield %>
+  </main>
     <footer>
      <p>Let Enjoy Cooking</p>
     </footer>
   </body>
+</html>

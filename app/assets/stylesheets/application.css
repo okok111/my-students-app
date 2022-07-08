@@ -14,232 +14,54 @@
  *= require_self
  */
 
-
  * {
-    padding: 0;
-    margin: 0;
-  }
-  body {
-    font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ",
-      Meiryo, "ＭＳ Ｐゴシック", sans-serif;
-  }
-  header {
-    background-color: #f99d63da;
-    height: 80px;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  header a {
-    color: rgb(255, 255, 255);
-    text-decoration: none;
-  }
-  header h1 {
-    color: white;
-    margin-left: 20px;
-  }
-  .header-list {
-    display: flex;
-    align-items: center;
-  }
-  header ul {
-    display: flex;
-  }
-  header li {
-    list-style: none;
-    margin-right: 40px;
-  }
-  footer {
-    color: rgb(255, 255, 255);
-    height: 30px;
-    background-color: #ffffffda;;
-    bottom: 0;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    position: fixed;
-    justify-content: flex-end;
-    opacity: 0.8;
-  }
-
-
-  .post-container {
-    margin: 50px auto;
-    width: 50%;
-    border: solid #d3def1;
-    border-radius: 10px;
-    text-align: center;
-    background-color: #d3def1;
-    opacity: 0.4;
-  }
-  .title {
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 50px;
-  }
-  .field {
-    margin: 50px auto;
-    width: 80%;
-    border: solid #cb4c3e;
-    border-radius: 30px;
-    text-align: center;
-    background-color: #f9e5c4;
-    margin-bottom: 30px;
-  }
-  .title {
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 60px;
-  }
-  .sub{
-    text-align: center;
-  }
-
-  .mypage {
-    margin: 50px auto;
-    width: 50%;
-    border: solid #d3def1;
-    border-radius: 10px;
-    text-align: center;
-    background-color: #ffffff;
+  padding: 0;
+  margin: 0;
 }
-  .itirann{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: stretch;
-    align-items: center;
-    align-content: stretch;
-    width: 800px;
-    height: 600px;
-    margin: 40px auto;
-  }
-  .posts{
-  margin: 2%;
-  padding: 0%;
-  width: 28%;
-  border-radius: 10px;
-  text-align: center;
-  background-color: #efe4c3;
-  height: 300px;
+body {
+  font-family: "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro W3", "メイリオ",
+    Meiryo, "ＭＳ Ｐゴシック", sans-serif;
 }
-  .shunsuke{
+header {
+  background-color: #f99d63da;
+  height: 80px;
+  font-weight: bold;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: stretch;
+  justify-content: space-between;
   align-items: center;
-  align-content: stretch;
-  width: 800px;
-  height: 600px;
-  margin: 20px 20px 20px;
+  width: 100%;
+  position: fixed;
+  top:0;
 }
-  .user-likes{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: stretch;
-    align-items: center;
-    align-content: stretch;
-    width: 800px;
-    height: 600px;
-    margin: 40px auto;
-  }
-  .container{
-    display: flex;
-    margin: 50px auto;
-    width: 80%
-  }
-  .tabs {
-    margin-top: 50px;
-    padding-bottom: 40px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    width: 1000px;
-    height: 2000px;
-    margin: 0 auto;}
-  /*タブのスタイル*/
-  .tab_item {
-    width: calc(100%/2);
-    height: 50px;
-    border-bottom: 3px solid #f99d63da;;
-    background-color: #ecd7c0;
-    line-height: 50px;
-    font-size: 16px;
-    text-align: center;
-    color: #565656;
-    display: block;
-    float: left;
-    text-align: center;
-    font-weight: bold;
-    transition: all 0.2s ease;
-  }
-  .tab_item:hover {
-    opacity: 0.75;
-  }
-  /*ラジオボタンを全て消す*/
-  input[name="tab_item"] {
-    display: none;
-  }
-  /*タブ切り替えの中身のスタイル*/
-  .tab_content {
-    display: none;
-    padding: 40px 40px 0;
-    clear: both;
-    overflow: hidden;
-  }
-  /*選択されているタブのコンテンツのみを表示*/
-  #all:checked ~ #all_content,
-  #programming:checked ~ #programming_content,
-  #design:checked ~ #design_content {
-    display: block;
-  }
-  /*選択されているタブのスタイルを変える*/
-  .tabs input:checked + .tab_item {
-    background-color: #f99d63da;;
-    color: #fff;
-  }
-  .body{
-  background-color: #ffffff;
-  }
-
-  .all{
-    background-color: rgb(253, 250, 226);
-    padding: 0;
-    margin: 0;
-  }
-
-  .top{
-    background-image: url(third-back.jpg);
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-size: cover;
-      background-color: #ffffff;
-  }
-  .first-block {
-      background-image: url(fourth-back.jpg);
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-size: cover;
-      background-color: #ffffff;
-      z-index: 0;
-      height: 90vh;
-    }
-    .first-block {
-      height: 700px;
-      background-color: #ddd;
-      opacity: 0.4;
-    }
-    .second-block {
-      height: 800px;
-      background-color: #f0f0f0;
-      opacity: 0.4;
-    }
-    .third-block {
-      height: 700px;
-      background-color: #e7d0a7;
-      opacity: 0.4;
-    }
-    .search-wrap input[type="text"]{
-      background-color: red;
-    }
+header a {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+}
+header h1 {
+  color: white;
+  margin-left: 20px;
+}
+.header-list {
+  display: flex;
+  align-items: center;
+}
+header ul {
+  display: flex;
+}
+header li {
+  list-style: none;
+  margin-right: 40px;
+}
+main{
+  padding-top: 80px;
+}
+footer {
+  color: rgb(255, 255, 255);
+  height: 30px;
+  background-color: #ffffffda;;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  opacity: 0.8;
+}
