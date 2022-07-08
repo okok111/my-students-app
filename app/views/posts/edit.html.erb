@@ -7,18 +7,19 @@
     <%= f.text_field :name, :size => 140 %>
     <br>
     <br>
-    <%= f.label :material %>
-    <%= f.text_area :material, size: "40x20" %>
-    <%= f.label :process %>
-    <%= f.text_area :process, size: "60x20"%>
-    <br>
-    <br>
+    <div class="way">
+      <%= f.label :material %>
+      <%= f.text_area :material, size: "40x20",class:"textarea" %>
+      <%= f.label :process %>
+      <%= f.text_area :process, size: "60x20",class:"textarea1"%>
+    </div>
+    <div class="field">
     <%= f.label :image %>
     <%= f.file_field :image %>
-    <br>
-    <br>
+  </div>
   <div class="sub">
   <%= f.submit "詳細へ" %>
+  <%= link_to "編集", user_path(current_user.id) %>
   </div>
   </div>
   </div>
