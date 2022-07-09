@@ -3,35 +3,36 @@
 <h3>PECIPE詳細</h3>
 <div class="post">
 <h1><p><%= @post.name %></p></h1>
+<div class="kaipi">
 <div class="material">
-<h4>材料</h4>
-<p>
-<%if @post.material.nil? %>  
-  <%=@post.material%>
-<% else %>
-  <%=safe_join(@post.material.split("\n"),tag(:br))%>    
-<%end %>
-
-</p> 
+  <h4>材料</h4>
+  <p>
+  <%if @post.material.nil? %>  
+    <%=@post.material%>
+  <% else %>
+    <%=safe_join(@post.material.split("\n"),tag(:br))%>    
+  <%end %>
+  </p> 
 </div>
 <div class="process">
-<h4>作り方</h4>
-<%if @post.process.nil? %>  
-  <%=@post.process%>
-<% else %>
-  <%=safe_join(@post.process.split("\n"),tag(:br))%>    
-<%end %>
+  <h4>作り方</h4>
+  <%if @post.process.nil? %>  
+    <%=@post.process%>
+  <% else %>
+    <%=safe_join(@post.process.split("\n"),tag(:br))%>    
+  <%end %>
 </div>
 <p><%= image_tag @post.image_url, size: "250x200" if @post.image? %>
+</div>
 </div>
 <% if user_signed_in? %>
     <% if current_user.already_liked?(@post) %>
           <%= link_to post_like_path(@post), method: :delete do %>
-             <p>いいねを取り消す</p><%= @post.likes.count %>
+            <p>いいねを取り消す</p><%= @post.likes.count %>
           <% end %>
       <% else %>
           <%= link_to post_likes_path(@post), method: :post do %>
-             <p>いいね</p><%= @post.likes.count %>
+            <p>いいね</p><%= @post.likes.count %>
           <% end %>
       <% end %>
   <% else %>
@@ -44,7 +45,7 @@
 <% end %>
 </div>
 <div class="comment-wrapper">
-   <h3><p>コメント一覧</p></h3>
+    <h3><p>コメント一覧</p></h3>
   <% @comments.each do |c| %>
     <div>
       <%= c.user.email unless c.user.blank? %>
